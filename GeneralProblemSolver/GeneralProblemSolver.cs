@@ -8,7 +8,7 @@ namespace GeneralProblemSolver
 {
     class GeneralProblemSolver
     {
-       public static bool SolveWithBreadthFirst(Problem problem)
+       public static State SolveWithBreadthFirst(Problem problem)
         {
             Queue<State> open = new Queue<State>();
             open.Enqueue(problem.InitialState);
@@ -24,8 +24,7 @@ namespace GeneralProblemSolver
                 // If we have reached the goalstate we finish with success.
                 if (n.Equals(problem.GoalState))
                 {
-                    PrintSuccessPath(n);
-                    return true;
+                    return n;
                 }
 
                 // Expand N using its rules and add to OPEN
@@ -37,10 +36,10 @@ namespace GeneralProblemSolver
                 }
 
             }
-            return false;
+            return null;
         }
 
-        public static bool SolveWithDepthFirst(Problem problem)
+        public static State SolveWithDepthFirst(Problem problem)
         {
             Stack<State> open = new Stack<State>();
             open.Push(problem.InitialState);
@@ -56,8 +55,7 @@ namespace GeneralProblemSolver
                 // If we have reached the goalstate we finish with success.
                 if (n.Equals(problem.GoalState))
                 {
-                    PrintSuccessPath(n);
-                    return true;
+                    return n;
                 }
 
                 // Expand N using its rules and add to OPEN
@@ -69,24 +67,7 @@ namespace GeneralProblemSolver
                 }
 
             }
-            return false;
-        }
-
-        private static void PrintSuccessPath(State n)
-        {
-            State s = n;
-            List<string> output = new List<string>();
-            while (s != null)
-            {
-                output.Add("First Jug: " + s.values[0] + ", Second Jug: " + s.values[1]);
-                s = s.parent;
-            }
-
-            output.Reverse();
-            foreach (string str in output)
-            {
-                Console.WriteLine(str);
-            }
+            return null;
         }
     }
 }

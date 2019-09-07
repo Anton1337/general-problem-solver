@@ -95,5 +95,22 @@ namespace GeneralProblemSolver
 
             return resultingStates;
         }
+
+        public static void PrintStatePath(State n)
+        {
+            State s = n;
+            List<string> output = new List<string>();
+            while (s != null)
+            {
+                output.Add("First Jug: " + s.values[0] + ", Second Jug: " + s.values[1]);
+                s = s.parent;
+            }
+
+            output.Reverse();
+            foreach (string str in output)
+            {
+                Console.WriteLine(str);
+            }
+        }
     }
 }
